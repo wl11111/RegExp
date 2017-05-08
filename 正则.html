@@ -36,6 +36,7 @@
 					将匹配到的字符替换为想要的字符
 					参数1：字符串或正则表达式；
 					参数2：要替换的字符或回调函数(一定要有返回值return)；
+							过滤敏感词：
 							如：var str = '中国主席法轮功'
 							str.replace(/中国|法轮功|/g,'*');   '|': 代表 或；
 							
@@ -116,6 +117,14 @@
 			
 		-->
 		<script>
+			var str = '国家领导人将法轮功定为邪教！';
+			console.log(str.replace(/国家|法轮功/g,function($0){
+				var n='';
+				for(var i=0;i<$0.length;i++){
+					n+='*'
+				}
+				return n;
+			}));
 			
 		</script>
 	</body>
