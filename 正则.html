@@ -84,20 +84,33 @@
 				\. :真正的点；
 				\s : 空格；
 				\S ：非空格；
-				\w :字符，包括字母、数字、下划线;
-				\W :非字符；
+				\w :字符，包括 字母、数字、下划线;
+				\W :非 字母、数字、下划线;
 				\n : 换行；
-				\b :独立的部分（起始，结束，空格）
+				\b : 边界符（不包含符号类的字符，符号会把非边界的分割为有边界的）（起始，结束；以空格、符号分开）；
 				\B :非独立部分
 				
 				重复子项：
 					\1:重复的第一个子项；
 					\2:重复的第二个子项；
 					.....
-					重复的子项所代表的字符完全与目标子项所代表的字符项同
+					重复的子项所代表的字符完全与目标子项所代表的字符项同;
+					如果在正则中乱写重复项，那么replace方法最后的返回值将是整个字符串；match方法返回值为null（正则已经失效了）
+					如果重复子项写在此子项的前面，那么是被忽略的；
 					如：/(a)(b)(c)\1/ -> /(a)(b)(c)a/;
 						/(a)(b)(c)\2/ -> /(a)(b)(c)b/;
-				
+						正则找字符串中出现次数最多的字符：
+						var str = 'jldfjjjdnjerjjjberhsffjfjjfbjgvldjhh';
+						var str = str.split('').sort().join('');
+						var max = 0;
+						str.replace(/(\w)\1+/g,function($0,$1){
+							if($0.legnth>max){
+								max = $0.legnth;
+								var index = $1;
+							}
+						})
+						console.log(index,max);
+						
 			量词：
 				+： 至少有一个
 				? : 量词  代表  最小可以没有，最多一个；
@@ -144,11 +157,24 @@
 					n+='*'
 				}
 				return n;
-			}));*/
+			}));
 			var str = 'abcfhga34cadc';
 			str.replace(/a([a-z])(c)/g,function($0,$1,$2,$3,$4){
 				console.log($0,$1,$2,$3,$4)
-			})
+			})*/
+			
+			var getByClass = (sClass) => {
+				var aEle = document.getElementsByTagName('*');
+				aEle = Arry.from(aEle);
+				var arr = [];
+				var re = new RegExp('\\b'+sClass+'\\b');
+				aEle.forEach((ele,i) => {
+					if(re.test(ele.className)){
+						arr.push(ele);
+					}
+				});
+				return arr;
+			}
 			
 		</script>
 	</body>
