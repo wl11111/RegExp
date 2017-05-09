@@ -62,8 +62,9 @@
 												第二个参数$1:有子项就为第一个子项；
 												第三个参数$2:有第二个子项就为第二个子项；
 												第四个参数$3:有第三个子项就为第三个子项；
-												第五个参数$4:没有第四个子项就为索引0；
-												第六个参数及之后都是undefined;
+												第五个参数$4:每次匹配到字符时的索引；
+												第六个参数$5：整个字符串;
+												第七个参数及之后都是undefined;
 												以此类推.....
 												
 									2.提权
@@ -136,14 +137,18 @@
 			
 		-->
 		<script>
-			var str = '国家领导人将法轮功定为邪教！';
+			/*var str = '国家领导人将法轮功定为邪教！';
 			console.log(str.replace(/国家|法轮功/g,function($0){
 				var n='';
 				for(var i=0;i<$0.length;i++){
 					n+='*'
 				}
 				return n;
-			}));
+			}));*/
+			var str = 'abcfhga34cadc';
+			str.replace(/a([a-z])(c)/g,function($0,$1,$2,$3,$4){
+				console.log($0,$1,$2,$3,$4)
+			})
 			
 		</script>
 	</body>
