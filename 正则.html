@@ -101,12 +101,13 @@
 						/(a)(b)(c)\2/ -> /(a)(b)(c)b/;
 						正则找字符串中出现次数最多的字符：
 						var str = 'jldfjjjdnjerjjjberhsffjfjjfbjgvldjhh';
-						var str = str.split('').sort().join('');
-						var max = 0;
+						str = str.split('').sort().join('');
+						var max = -Infinity;
+						var index = '';
 						str.replace(/(\w)\1+/g,function($0,$1){
-							if($0.legnth>max){
-								max = $0.legnth;
-								var index = $1;
+							if($0.length>max){
+								max = $0.length;
+								index = $1;
 							}
 						})
 						console.log(index,max);
@@ -163,7 +164,7 @@
 				console.log($0,$1,$2,$3,$4)
 			})*/
 			
-			var getByClass = (sClass) => {
+		/*	var getByClass = (sClass) => {
 				var aEle = document.getElementsByTagName('*');
 				aEle = Arry.from(aEle);
 				var arr = [];
@@ -174,8 +175,20 @@
 					}
 				});
 				return arr;
-			}
+			}*/
 			
+			
+			var str = 'jldfjjjdnjerjjjberhsffjfjjfbjgvldjhh';
+						str = str.split('').sort().join('');
+						var max = -Infinity;
+						var index = '';
+						str.replace(/(\w)\1+/g,function($0,$1){
+							if($0.length>max){
+								max = $0.length;
+								index = $1;
+							}
+						})
+						console.log(index,max);
 		</script>
 	</body>
 </html>
